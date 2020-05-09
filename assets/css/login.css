@@ -41,7 +41,7 @@
   }
   .login{
     margin-top: 180px;
-    margin-bottom: 250px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,11 +60,8 @@
   }
   .fondo img{
     margin-top: -75px;
-    margin-bottom: 40px;
-    width: 25%;
-    border-radius: 50%;
-    border: solid linear-gradient(to right, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%); 5px;
-    background: linear-gradient(to right, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 50%, rgba(206,199,236,1) 51%, rgba(193,191,234,1) 100%);
+    margin-bottom: 15px;
+    width: 30%;
   }
   .fondo h3{
     color: #fff;
@@ -97,7 +94,6 @@
     color: #fff;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    text-align: right;
     transition: all 250ms ease;
   }
   .fondo form .inp:focus{
