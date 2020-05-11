@@ -64,21 +64,9 @@
                                 <nav>
                                     <ul id="navigation">    
                                         <li class="active"><a href="index.html">Acerca de Amicals</a></li>
-                                        <li><a href="login.html">Iniciar Sesión</a></li>
-                                        <li><a href="blog.html">Registrarse</a></li>
-                                        <li><a href="Vocabularios.html">Vocabularios</a>
-                                            <ul class="submenu">
-                                                <li><a href="Saludos.html">Saludos</a></li>
-                                                <li><a href="preguntas.html">Preguntas</a></li>
-                                                <li><a href="familia.html">Familia</a></li>
-                                                <li><a href="colores.html">colores</a></li>
-                                                <li><a href="medios.html">Medios de transporte</a></li>
-                                              
-                                               
-                                              
-                                                
-                                            </ul>
-                                        </li>
+                                        <li><a href="login.php">Iniciar Sesión</a></li>
+                                        <li><a href="blog.php">Registrarse</a></li>
+                                       
                                         
                                     </ul>
                                 </nav>
@@ -95,25 +83,26 @@
                             <img src="assets/img/logo.png" alt="User">
                         <h3>Registrarse</h3>
                         
-                        <form class="" action="conexion.php" method="post">
-                            <label for="mail">Nombres:</label>
-                          <input class="inp" type="text" name="usuario" value="" ><br>
+                        <form class="" id="registrarse">
+                            <label>Nombres:</label>
+                          <input class="inp" type="text" id="txt_nombre" name="usuario" value="" ><br>
 
                           <label for="mail">Apellidos:</label>
-                          <input class="inp" type="text" name="apellidos" value="" ><br>
+                          <input class="inp" type="text" name="apellidos" id="txt_apellido" value="" ><br>
 
                           <label for="mail">Correo Electronico:</label>
-                          <input  class="inp" type="email" id="mail" name="user_mail">
+                          <input  class="inp" type="email" id="txt_correo" name="user_mail">
 
                           <label for="mail">Introduzca una contraseña:</label>
-                          <input class="inp" type="password" name="pass" value=""><br>
+                          <input class="inp" type="password" name="pass" id="txt_contraseña" value=""><br>
 
                           <label for="mail">Confirme la contraseña:</label>
-                          <input class="inp" type="password" name="pass2" value=""><br>
+                          <input class="inp" id="txt_contraseña2" type="password" name="pass2" value=""><br>
                      
                      
                          
-                        <input class="boton" type="submit" name="inicio" value="Registrarse" onclick="location.href='login.html'">
+                        
+                        <button class="boton" id="registrar" type="submit">Registrarse</button>
                         </form>
                       </article>
                     </div>
@@ -160,7 +149,8 @@
         
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
+       <script src="./assets/js/main.js"></script> 
+       <script src="class/controlador.js"></script>
 
 </body>
 </html>

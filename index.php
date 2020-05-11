@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -41,19 +42,10 @@
                         <div class="main-menu f-right d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">    
-                                    <li class="active"><a href="index.html">Acerca de Amicals</a></li>
-                                    <li><a href="login.html">Iniciar Sesión</a></li>
-                                    <li><a href="blog.html">Registrarse</a></li>
-                                    <li><a href="Vocabularios.html">Vocabularios</a>
-                                       
-                                        <ul class="submenu">
-                                            <li><a href="Saludos.html">Saludos</a></li>
-                                             <li><a href="preguntas.html">Preguntas</a></li>
-                                             <li><a href="familia.html">Familia</a></li>
-                                             <li><a href="colores.html">colores</a></li>
-                                             <li><a href="medios.html">Medios de transporte</a></li>
-                                        </ul>
-                                    </li>
+                                    <li class="active"><a href="index.php">Acerca de Amicals</a></li>
+                                    <li><a href="login.php">Iniciar Sesión</a></li>
+                                    <li><a href="blog.php">Registrarse</a></li>
+                                   
                                  
                                 </ul>
                             </nav>

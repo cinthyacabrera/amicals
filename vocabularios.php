@@ -40,9 +40,7 @@
                         <div class="main-menu f-right d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">    
-                                    <li ><a href="index.html">Acerca de Amicals</a></li>
-                                    <li><a href="login.html">Iniciar Sesión</a></li>
-                                    <li><a href="blog.html">Registrarse</a></li>
+                                    <li ><a href="index-sesion.php">Acerca de Amicals</a></li>
                                     <li class="active"><a href="Vocabularios.html">Vocabularios</a>
                                         <ul class="submenu">
                                             <li><a href="Saludos.html">Saludos</a></li>

@@ -60,19 +60,10 @@
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">    
-                                        <li ><a href="index.html">Acerca de Amicals</a></li>
-                                        <li class="active" ><a href="login.html">Iniciar Sesión</a></li>
-                                        <li><a href="blog.html">Registrarse</a></li>
-                                        <li><a href="Vocabularios.html">Vocabularios</a>
-                                            <ul class="submenu">
-                                                <li><a href="Saludos.html">Saludos</a></li>
-                                                <li><a href="preguntas.html">Preguntas</a></li>
-                                                <li><a href="familia.html">Familia</a></li>
-                                                <li><a href="colores.html">colores</a></li> <li><a href="medios.html">Medios de transporte</a></li>
-                                      
-                                                
-                                            </ul>
-                                        </li>
+                                        <li ><a href="index.php">Acerca de Amicals</a></li>
+                                        <li class="active" ><a href="login.php">Iniciar Sesión</a></li>
+                                        <li><a href="blog.php">Registrarse</a></li>
+                                        
                                         
                                     </ul>
                                 </nav>
@@ -87,13 +78,13 @@
                               <article class="fondo">
                                 <img src="assets/img/logo.png" alt="User">
                                 <h3>Inicio de Sesión</h3>
-                                <form class="" action="Vocabularios.html" method="post">
-                                    <label for="">Usuario:</label>
-                                  <input class="inp" type="text" name="user" value=""><br>
+                                <form id="iniciarSesion">
+                                    <label for="">Correo electrónico:</label>
+                                  <input class="inp" type="text" id="correo"name="user" value=""><br>
                                   <label >Contraseña:</label>
-                                  <input class="inp" type="password" name="pass" value=""><br>
+                                  <input class="inp" type="password" id="password" name="pass" value=""><br>
                                  
-                                <input class="boton" type="submit" name="inicio" value="Iniciar Sesión"  onclick="location.href='Vocabularios.html'" >
+                                <input class="boton" type="submit" name="inicio" value="Iniciar Sesión">
                                 </form>
                               </article>
                             </div>
@@ -140,6 +131,7 @@
                             <!-- Jquery Plugins, main Jquery -->	
                             <script src="./assets/js/plugins.js"></script>
                             <script src="./assets/js/main.js"></script>
+                            <script src="class/controlador.js"></script>
                             
                    
 </html>

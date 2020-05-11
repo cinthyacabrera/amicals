@@ -5,8 +5,8 @@
 		private $usuario="root";
 		private $contrasena="";
 		private $host="localhost";
-		private $baseDatos="usuarios";//nombre de su base de datos
-		private $puerto="3308";//puerto en el que se instalo wamp
+		private $baseDatos="amicals";
+		private $puerto="3308";
 		private $link;
 
 		public function __construct(){
@@ -30,48 +30,61 @@
 			return mysqli_query($this->link, $sql);
 		}
 
-		public function obtenerFila($resultado){
-			return mysqli_fetch_array($resultado);
+		public function obtenerFila($sql){
+			return mysqli_fetch_array($sql);
 		}
-		public function liberarResultado($resultado){
-			mysqli_free_result($resultado);
+
+		public function liberarResultado($sql){
+			mysqli_free_result($sql);
 		}
+
 		public function getUsuario(){
-			return $this->usuario;
+			return $this->usuarios;
 		}
+
 		public function setUsuario($usuario){
 			$this->usuario = $usuario;
 		}
+
 		public function getContrasena(){
 			return $this->contrasena;
 		}
+
 		public function setContrasena($contrasena){
 			$this->contrasena = $contrasena;
 		}
+
 		public function getHost(){
 			return $this->host;
 		}
+
 		public function setHost($host){
 			$this->host = $host;
 		}
+
 		public function getBaseDatos(){
 			return $this->baseDatos;
 		}
+
 		public function setBaseDatos($baseDatos){
 			$this->baseDatos = $baseDatos;
 		}
+
 		public function getPuerto(){
 			return $this->puerto;
 		}
+
 		public function setPuerto($puerto){
 			$this->puerto = $puerto;
 		}
+
 		public function getLink(){
 			return $this->link;
 		}
+		
 		public function setLink($link){
 			$this->link = $link;
 		}
 
 	}
-?> 
+?>

@@ -4,13 +4,13 @@
 	$conexion = new Conexion();	
 
     $resultado = $conexion->ejecutarInstruccion(/// consulta para probar si la base de datos funciona
-        'SELECT id_usuario, concat (Nombres, Apellidos, Correo_electronico, contra) FROM usuario');
+        'SELECT idUsuario, concat (nombre, apellido, email, contrasenia) as datos FROM usuarios');
 	
 		echo '<table border="1px">';///imprime una tabla con los datos de id de persona y nombre de la persona
 	while($fila = $conexion->obtenerFila($resultado)){
         echo "<tr>";
-		echo "<td>". $fila["id_usuario"]. "</td>"; 
-        echo "<td>". $fila["Nombres"]. "</td>";    
+		echo "<td>". $fila["idUsuario"]. "</td>"; 
+        echo "<td>". $fila["datos"]. "</td>";    
        
   
 		echo "</tr>";
