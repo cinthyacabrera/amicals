@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,9 +44,9 @@
                         <div class="main-menu f-right d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">    
-                                    <li ><a href="index.php">Acerca de Amicals</a></li>
+                                    <li ><a href="index-sesion.php">Acerca de Amicals</a></li>
                                     
-                                    <li ><a href="Vocabularios.html">Vocabularios</a>
+                                    <li ><a href="Vocabularios.php">Vocabularios</a>
                                         <ul class="submenu">
                                             <li><a href="Saludos.html">Saludos</a></li>
                                           <li><a href="preguntas.html">Preguntas</a></li>
@@ -52,9 +55,9 @@
                                           <li><a href="medios.html">Medios de transporte</a></li>
                                         </ul>
                                     </li>
-                                    <li class="active"><a href="Perfil.html">Perfil</a>
+                                    <li class="active"><a href="Perfil.php">Perfil</a>
                                         <ul class="submenu">
-                                            <li><a href="login.html">Cerrar Sesión</a></li>
+                                            <li><a href="class/cerrarSesion.php">Cerrar Sesión</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -81,86 +84,90 @@
     <br>
     <div class="panel-body card" style="background-color: rgb(255, 221, 219); margin: 10px 10px 10px 10px;">
         
-           
+      
     <div class="container bootstrap snippet" style="margin-top: 13px;">
         
         <div class="row">
-              <div class="col-sm-3"><!--left col-->
+              <div class="col-lg-3"><!--left col-->
                   
     
-          <div class="text-center">
-            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-            <div class="col-xs-6">
-                <label for="first_name"><h4>First name</h4></label>
+          <div class="text-center col-lg-12">
+            <img id="imagenPerfil" class="avatar img-circle img-thumbnail" alt="avatar">
+            <div class="col-xs-6 col-lg-12">
+                <label for="first_name"><h4>
+                <?php echo $_SESSION["usuario"]["nombre"] . ' ' . $_SESSION["usuario"]["apellido"]; ?>
+                </h4></label>
+                <h6>Si quiere editar su fotografia de click sobre ella.</h6>
             </div>
-            <input type="file" class="text-center center-block file-upload">
+            <form id="formAtualizarImagen" style="display:none" enctype="multipart/form-data">
+                            <!-- ACTUALIZAR IMAGEN -->
+                            <input type="file" name="imagen" accept="image/*" id="imagenActualizar" class="file-upload col-lg-12">
+             </form>
+            
+            
           </div></hr><br>
     
             </div><!--/col-3-->
             
-                    
-            <div class="col-sm-9" role="tablist">
-            <ul class="nav nav-tabs nav-fill" >
-                <li class="active nav-item nav-link"><a data-toggle="tab" aria-expanded="true" href="#settings"><h2>Informacion</h2></a></li>
-                <li class="nav-item nav-link"><a data-toggle="tab" aria-expanded="false" href="#messages"><h2>Comentarios</h2></a></li>
-                <li class=" nav-item nav-link"><a data-toggle="tab" aria-expanded="false" href="#home"><h2>Editar</h2> </a></li>
-                  </ul>
-    
-                  
+            
+            <div class="col-lg-9" role="tablist">
+                   
+                            <nav>
+                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#informacion" role="tab" aria-controls="nav-home" aria-selected="true" style="color:black">INFORMACION</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#editar" role="tab" aria-controls="nav-contact" aria-selected="false" style="color:black">EDITAR</a>
+                                    
+                
+                                </div>
+                            </nav>
               <div class="tab-content">
-                <div class="tab-pane active" id="home">
+                <div class="tab-pane" id="editar">
                     <hr>
                       <form class="form" action="##" method="post" id="registrationForm">
                           <div class="form-group">
                               
                               <div class="col-xs-6">
-                                  <label for="first_name"><h4>First name</h4></label>
-                                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                                  <label for="first_name"><h4>Nombre</h4></label>
+                                  <input type="text" class="form-control" name="first_name" id="nombre_editar" value="<?php echo $_SESSION["usuario"]["nombre"]; ?>" title="enter your first name if any.">
                               </div>
                           </div>
                           <div class="form-group">
                               
                               <div class="col-xs-6">
-                                <label for="last_name"><h4>Last name</h4></label>
-                                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                                <label for="last_name"><h4>Apellido</h4></label>
+                                  <input type="text" class="form-control" name="last_name" id="apellido_editar" value="<?php echo $_SESSION["usuario"]["apellido"]; ?>" title="enter your last name if any.">
                               </div>
                           </div>
               
-                          <div class="form-group">
-                              
-                              <div class="col-xs-6">
-                                  <label for="phone"><h4>Phone</h4></label>
-                                  <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                              </div>
-                          </div>
-              
+                                      
                           <div class="form-group">
                               
                               <div class="col-xs-6">
                                   <label for="email"><h4>Email</h4></label>
-                                  <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                                  <input type="email" class="form-control" name="email" id="email_editar" value="<?php echo $_SESSION["usuario"]["email"]; ?>" title="enter your email.">
+                              </div>
+                          </div>
+                         
+                          <div class="form-group">
+                              
+                              <div class="col-xs-6">
+                                  <label for="password"><h4>Contraseña </h4></label>
+                                  <input type="password" class="form-control" name="password" id="contra_editar" value="<?php echo $_SESSION["usuario"]["contrasenia"]; ?>" title="enter your password.">
                               </div>
                           </div>
                           <div class="form-group">
                               
                               <div class="col-xs-6">
-                                  <label for="email"><h4>Location</h4></label>
-                                  <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              
-                              <div class="col-xs-6">
-                                  <label for="password"><h4>Password</h4></label>
-                                  <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                                  <label for="password"><h4>Confirme contraseña</h4></label>
+                                  <input type="password" class="form-control" name="password" id="contra2_editar" placeholder="confirme contraseña" title="enter your password.">
                               </div>
                           </div>
                           
                           <div class="form-group">
                                <div class="col-xs-12">
                                     <br>
-                                      <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                       <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                      <button class="btn btn-lg btn-success" id="editarUsuario"type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Guardar</button>
+                                       
                                 </div>
                           </div>
                       </form>
@@ -168,109 +175,45 @@
                   <hr>
                   
                  </div><!--/tab-pane-->
-                 <div class="tab-pane" id="messages">
-                   <style>
-                   .comment-box img {
-                    width: 50px;
-                    height: 50px;
-                    }
-                    .comment-box .media-left {
-                        padding-right: 10px;
-                        width: 65px;
-                    }
-                    .comment-box .media-body p {
-                        border: 1px solid #ddd;
-                        padding: 10px;
-                    }
-                    .comment-box .media-body .media p {
-                        margin-bottom: 0;
-                    }
-                    .comment-box .media-heading {
-                        background-color: #f5f5f5;
-                        border: 1px solid #ddd;
-                        padding: 7px 10px;
-                        position: relative;
-                        margin-bottom: -1px;
-                    }
-                    .comment-box .media-heading:before {
-                        content: "";
-                        width: 12px;
-                        height: 12px;
-                        background-color: #f5f5f5;
-                        border: 1px solid #ddd;
-                        border-width: 1px 0 0 1px;
-                        -webkit-transform: rotate(-45deg);
-                        transform: rotate(-45deg);
-                        position: absolute;
-                        top: 10px;}
-                    </style>
-                   
-                   <hr>
-                   <div class='container'>
-                    <div class="media comment-box">
-                       <div class="media-left">
-                           <a href="#">
-                               <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                           </a>
-                       </div>
-                       <div class="media-body">
-                           <h4 class="media-heading">Azar Hank</h4>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                         
-                       </div>
-                   </div>
-           </div>
-                   
-                 </div><!--/tab-pane-->
-                 <div class="tab-pane" id="settings">
+                 
+                 <div class="tab-pane active" id="informacion">
                         
                        
                       <hr>
                       <form class="form" action="##" method="post" id="registrationForm">
-                          <div class="form-group">
+                      <div class="form-group">
                               
                               <div class="col-xs-6">
-                                  <label for="first_name"><h4>First name</h4></label>
-                                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                                  <label for="first_name"><h4>Nombre</h4></label>
+                                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="<?php echo $_SESSION["usuario"]["nombre"]; ?>" readonly>
                               </div>
                           </div>
                           <div class="form-group">
                               
                               <div class="col-xs-6">
-                                <label for="last_name"><h4>Last name</h4></label>
-                                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                              </div>
-                          </div>
-              
-                          <div class="form-group">
-                              
-                              <div class="col-xs-6">
-                                  <label for="phone"><h4>Phone</h4></label>
-                                  <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                                <label for="last_name"><h4>Apellido</h4></label>
+                                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="<?php echo $_SESSION["usuario"]["apellido"]; ?>" readonly>
                               </div>
                           </div>
               
+                                      
                           <div class="form-group">
+                              
                               <div class="col-xs-6">
-                                 <label for="mobile"><h4>Mobile</h4></label>
-                                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
+                                  <label for="email"><h4>Email</h4></label>
+                                  <input type="email" class="form-control" name="email" id="email" placeholder="<?php echo $_SESSION["usuario"]["email"]; ?>" readonly>
+                              </div>
+                          </div>
+                         
+                          <div class="form-group">
+                              
+                              <div class="col-xs-6">
+                                  <label for="password"><h4>Contraseña </h4></label>
+                                  <input type="password" class="form-control" name="password" id="password" value="<?php echo $_SESSION["usuario"]["contrasenia"]; ?>" readonly>
                               </div>
                           </div>
                           
-                          <div class="form-group">
-                              
-                              <div class="col-xs-6">
-                                <label for="password2"><h4>Verify</h4></label>
-                                  <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                               <div class="col-xs-12">
-                                    <br>
-                                      <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                       <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                                </div>
-                          </div>
+                          
                       </form>
                   </div>
                    
@@ -282,6 +225,14 @@
         </div>
         
  
+    
+    
+    
+    
+    
+    
+    
+    
     </body>
 <footer>
 
@@ -379,6 +330,7 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
+        <script src="class/controlador.js"></script>
        <script>$(document).ready(function() {
 
     
@@ -393,8 +345,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        
-    
+            
         $(".file-upload").on('change', function(){
             readURL(this);
         });
