@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -53,7 +56,7 @@
                                              <li><a href="medios.html">Medios de transporte</a></li>
                                         </ul>
                                     </li>
-                                    <li class="active"><a href="Perfil.php">Perfil</a>
+                                    <li class="active"><a href="admin.php">Perfil</a>
                                         <ul class="submenu">
                                             <li><a href="class/cerrarSesion.php">Cerrar Sesión</a></li>
                                         </ul>
@@ -98,10 +101,10 @@
                             <h4>Images with text items</h4>
                         </div>
                         <div class="gaadiex-list">
-                            <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
+                            <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="<?php echo $_SESSION["usuario"]["urlFoto"]; ?>" alt="List user">
                               <div class="gaadiex-list-item-text">
-                                <h3><a href="#">Eric Graves</a></h3>
-                                <h4>EricGraves@gmail.com</h4>
+                                <h3><?php echo $_SESSION["usuario"]["nombre"] . ' ' . $_SESSION["usuario"]["apellido"]; ?></h3>
+                                <h4><?php echo $_SESSION["usuario"]["email"]; ?></h4>
                                 <style>.card-header{ padding: 16px;margin:0px;}
                                     .card-body {position: relative; padding: 16px;}
                                     
@@ -135,7 +138,7 @@
                  </div>
     <div class="container">
         <div class="row">
-          <div class="col-xs-12 ">
+          <div class="col-lg-12 ">
             <nav>
               <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Usuarios</a>
@@ -146,65 +149,18 @@
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="container">
                     <div class="row">
-                        <div class="panel panel-default widget">
+                        <div class="panel panel-default widget col-lg-12">
                             <div class="panel-heading">
                                 <span class="glyphicon glyphicon-comment"></span>
                                 <h3 class="panel-title">
-                                    Recent Comments</h3>
-                                <span class="label label-info">
-                                    78</span>
+                                    Usuario registrados:</h3>
+                                
                             </div>
                             <div class="panel-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-xs-2 col-md-1">
-                                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
-                                            <div class="col-xs-10 col-md-11">
-                                                <div>
-                                                    <a href="http://www.jquery2dotnet.com/2013/10/google-style-login-page-desing-usign.html">
-                                                        Francisco Pineda</a>
-                                                    <div class="mic-info">
-                                                        <a href="#">Fracisco</a> on 2 Aug 2013
-                                                    </div>
-                                                </div>
-                                                <div class="comment-text">
-                                                    Fracisco@gmail
-                                                </div>
-                                                <!--<div class="action">
-                                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
-                                                        <span class="glyphicon glyphicon-ok"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
-                                                        <span class="glyphicon glyphicon-trash"></span>
-                                                    </button>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <div class="col-xs-2 col-md-1">
-                                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
-                                            <div class="col-xs-10 col-md-11">
-                                                <div>
-                                                    <a href="http://bootsnipp.com/BhaumikPatel/snippets/Obgj">Bhaumik Patel</a>
-                                                    <div class="mic-info">
-                                                        By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
-                                                    </div>
-                                                </div>
-                                                <div class="comment-text">
-                                                    Bhaumik@yahoo.com</div>
-                                                
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                </ul>
-                                <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>
+                                    <div class='container' id="insertausuarios" >
+                        
+                                     </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -261,20 +217,11 @@
                      </style>
                     
                     <hr>
-                    <div class='container'>
-                     <div class="media comment-box">
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Azar Hank</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                          
-                        </div>
-                    </div>
-            </div>
+                         <div class='container'>
+                         <div class='container' id="insertacomentarios1" >
+                        
+                         </div>
+                         </div>
                      </div>
              
             
@@ -386,6 +333,7 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
+        <script src="class/controlador.js"></script>
     
 
       

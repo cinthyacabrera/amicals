@@ -69,12 +69,9 @@ $(document).ready(function () {
                 "&password=" + $("#password").val(),
             success: function (resultado) {
                 respuesta = JSON.parse(resultado);									
-                if (!respuesta.error) {
-	                if (respuesta.idtipousurio == 2) {
-				location.href = admin.php";
-			}else{
-				location.href = "vocabularios.php";
-			}    
+                if (!respuesta.error) {												
+                    location.href = "vocabularios.php";
+                    
                 }
                 else {
                    alert("no existe el usuario");																			
@@ -127,6 +124,7 @@ $(document).ready(function () {
     });	
 
     anexarcomentarios();
+    anexarusuarios();
 
 });	
 anexarcomentarios = function () {
@@ -169,9 +167,58 @@ anexarcomentarios = function () {
         }
         
         $("#insertacomentarios").html(comentarios1);
+        $("#insertacomentarios1").html(comentarios1);
       },
       error: function (error) {
         console.log(error);
       },
-    }); //Fin ajax categorias
+    });
+  };
+
+  anexarusuarios = function () {
+    $.ajax({
+      url: "class/controlador.php?accion=6",
+      success: function (resultado) {
+        var datos = JSON.parse(resultado);
+        console.log(datos);
+        
+        usuarios1 = "";
+        if (datos.usuarios.error == true) {
+            usuarios1 =
+            "<li>" +
+            "<div class='title'>" +
+            "</div>" +
+            "<div class='content'>" +
+            "<div>" +
+            "<p>" +
+            "Sin comentarios todavia" +
+            "</p>" +
+            "</div>" +
+            "</div>" +
+            "</li>";
+        } else {
+            for (var i = 0; i < datos.usuarios.length; i++) {
+            usuarios1 +=
+            "<div class='media comment-box col-lg-12 col-md-12 col-sm-12' style='text-align:left'>"+
+            " <div class='media-left'>"+
+                " <a href='#'>"+
+                   "  <img class='img-responsive user-photo' src='"+datos.usuarios[i].urlFoto +"'>"+
+                " </a>"+
+            " </div>"+
+            " <div class='media-body' style='background-color:white'>"+
+                " <h4 class='media-heading'>"+datos.usuarios[i].nombre+" "+datos.usuarios[i].apellido+"</h4>"+
+                " <p >"+datos.usuarios[i].email+"</p>"+
+             
+             "</div>"+
+        " </div>";
+            }
+        }
+        
+        $("#insertausuarios").html(usuarios1);
+       
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    }); 
   };

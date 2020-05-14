@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +34,7 @@
                     <!-- Logo  del header-->
                     <div class="col-xl-2 col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/img/logoletras.png" style="width: 150px; position:relative; left: 0px; top: -10px; z-index: 999; opacity: 1;">
+                            <a href="index.php"><img src="assets/img/logoletras.png" style="width: 150px; position:relative; left: 0px; top: -10px; z-index: 999; opacity: 1;">
                                 </a>
                         </div>
                     </div>
@@ -50,7 +53,24 @@
                                           <li><a href="medios.html">Medios de transporte</a></li>
                                         </ul>
                                     </li>
-                                 
+                                    <?php
+                                        if ($_SESSION["usuario"]["tipo"] == "administrador") {
+                                            echo ' <li class="active"><a href="admin.php">Perfil</a>
+                                            <ul class="submenu">
+                                                <li><a href="class/cerrarSesion.php">Cerrar Sesión</a></li>
+                                            </ul>
+                                        </li>';
+                                        }
+                                        if ($_SESSION["usuario"]["tipo"] == "normal") {
+                                            echo ' <li class="active"><a href="Perfil.php">Perfil</a>
+                                            <ul class="submenu">
+                                                <li><a href="class/cerrarSesion.php">Cerrar Sesión</a></li>
+                                            </ul>
+                                        </li>';
+                                        }
+
+
+                                        ?>
                                 </ul>
                             </nav>
                         </div>
@@ -152,6 +172,91 @@
    
       
     </main>
+    <section style="text-align:center">
+    <div style="text-align:center; background-color: rgb(255, 221, 219); margin: 10px 10px 10px 10px;">
+        <h1 style="text-align:center">Comenta tu experiencia:</h1>
+    </div>
+    
+    <style>
+    .comment-box {
+    margin-top: 30px !important;
+}
+/* CSS Test end */
+
+.comment-box img {
+    width: 50px;
+    height: 50px;
+}
+.comment-box .media-left {
+    padding-right: 10px;
+    width: 65px;
+}
+.comment-box .media-body p {
+   
+    padding: 10px;
+}
+.comment-box .media-body .media p {
+    margin-bottom: 0;
+}
+.comment-box .media-heading {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 7px 10px;
+    position: relative;
+    margin-bottom: -1px;
+}
+.comment-box .media-heading:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-width: 1px 0 0 1px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 10px;
+    left: -6px;
+}
+
+.comment-area{
+   background: none repeat scroll 0 0 #fff;
+border: medium none;
+-webkit-border-radius: 4px 4px 0 0;
+-moz-border-radius: 4px 4px 0 0;
+-ms-border-radius: 4px 4px 0 0;
+-o-border-radius: 4px 4px 0 0;
+border-radius: 4px 4px 0 0;
+color: #777777;
+float: left;
+font-family: Lato;
+font-size: 14px;
+height: 85px;
+letter-spacing: 0.3px;
+padding: 10px 20px;
+width: 100%;
+resize:vertical;
+outline:none;
+border: 1px solid #F2F2F2;
+}
+    </style>
+
+    <div style=" background-color: rgb(255, 221, 219); margin: 10px 10px 10px 10px; padding:20px">
+                 <div class='container' id="insertacomentarios" >
+                        
+                </div>
+                <form class="comment-form">
+					<textarea class="comment-area" name="user_comment" placeholder="Escribe tu comentario aqui" id="txt_texto" ></textarea>
+					<br>
+                    <button type="submit" style="position:static"class="btn btn-lg btn-success comment-btn col-lg-4 col-md-2 col-sm-2" id="comentario">Enviar</button>
+				</form>
+                
+                
+    </div>
+                
+    
+    
+    </section>
     
  
 </body>
@@ -251,4 +356,5 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
+        <script src="class/controlador.js"></script>
 </html>

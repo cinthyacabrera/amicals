@@ -71,14 +71,15 @@ switch ($_GET["accion"]) {
                 echo $respuesta;
             }
             $conexion = new conexion();
-            $sql = "SELECT idUsuario, nombre, apellido, email, contrasenia, idtipousuario FROM usuarios
+            $sql = "SELECT idUsuario, nombre, apellido, email, contrasenia ,urlFoto, tu.tipo FROM usuarios u
+                INNER JOIN tipousuario tu ON tu.idtipousuario=u.idtipousuario
                 WHERE email='$correo' AND contrasenia='$password';";
             $resultado = $conexion->ejecutarInstruccion($sql);
             if ($resultado->num_rows == 1) {
                 $datos = $resultado->fetch_assoc();
                 session_start();
                 $_SESSION["usuario"] = $datos;
-                echo json_encode(array('error' => false, 'idtipousuario' => $datos["idtipousuario"]));
+                echo json_encode(array('error' => false));
             } else {
                 echo json_encode(array('error' => true));
             }
@@ -133,8 +134,9 @@ switch ($_GET["accion"]) {
                             echo "No hay respuesta de la consulta";
                         } else {
                             echo "Actualizado";
-                            $sql="SELECT idUsuario, nombre, apellido, email, contrasenia FROM `usuarios`
-                            WHERE email='$correo' AND idUsuario=$idUsuario";
+                            $sql = "SELECT idUsuario, nombre, apellido, email, contrasenia , urlFoto, tu.tipo FROM usuarios u
+                            INNER JOIN tipousuario tu ON tu.idtipousuario=u.idtipousuario
+                            WHERE email='$correo' AND contrasenia='$password';";
                             $resultado=$conexion->ejecutarInstruccion($sql);
                             if($resultado->num_rows==1){
                                 $datos=$resultado->fetch_assoc();
@@ -198,6 +200,27 @@ switch ($_GET["accion"]) {
                                 echo json_encode(array("comentarios" => $comentarios));
                             } else {
                                 echo json_encode(array("comentarios" => array("error" => true, "mensaje" => "No hay comentarios todavia")));
+                            }
+                        } else {
+                            echo "error en consulta de comentarios";
+                        }
+
+                break;
+                case '6':
+                    $conexion = new Conexion();
+                    $sql1="SELECT idUsuario, nombre, apellido, email, contrasenia , urlFoto FROM usuarios u
+                         ";
+                         
+                         if ($respuesta2 = $conexion->ejecutarInstruccion($sql1)) {
+                            $usuarios = array();
+                            if ($respuesta2->num_rows != 0) {
+                                while ($row2 = $conexion->obtenerFila($respuesta2)) {
+                                    $usuarios[] = array("idUsuario" => $row2["idUsuario"], "nombre" => $row2["nombre"] , 
+                                    "apellido" => $row2["apellido"], "urlFoto" => $row2["urlFoto"], "email" => $row2["email"]);
+                                }
+                                echo json_encode(array("usuarios" => $usuarios));
+                            } else {
+                                echo json_encode(array("usuarios" => array("error" => true, "mensaje" => "No hay usuarios todavia")));
                             }
                         } else {
                             echo "error en consulta de comentarios";

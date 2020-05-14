@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -33,7 +35,7 @@
                     <!-- Logo  del header-->
                     <div class="col-xl-2 col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/img/logoletras.png" style="width: 150px; position: relative; left: 0px; top: -10px; z-index: 999; opacity: 1;">
+                            <a href="index.php"><img src="assets/img/logoletras.png" style="width: 150px; position: relative; left: 0px; top: -10px; z-index: 999; opacity: 1;">
                                 </a>
                         </div>
                     </div>
@@ -52,6 +54,24 @@
                                           <li><a href="medios.html">Medios de transporte</a></li>
                                         </ul>
                                     </li>
+                                    <?php
+                                        if ($_SESSION["usuario"]["tipo"] == "administrador") {
+                                            echo ' <li class="active"><a href="admin.php">Perfil</a>
+                                            <ul class="submenu">
+                                                <li><a href="class/cerrarSesion.php">Cerrar Sesión</a></li>
+                                            </ul>
+                                        </li>';
+                                        }
+                                        if ($_SESSION["usuario"]["tipo"] == "normal") {
+                                            echo ' <li class="active"><a href="Perfil.php">Perfil</a>
+                                            <ul class="submenu">
+                                                <li><a href="class/cerrarSesion.php">Cerrar Sesión</a></li>
+                                            </ul>
+                                        </li>';
+                                        }
+
+
+                                        ?>
                                    
                                  
                                 </ul>
