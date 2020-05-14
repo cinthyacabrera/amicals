@@ -71,14 +71,14 @@ switch ($_GET["accion"]) {
                 echo $respuesta;
             }
             $conexion = new conexion();
-            $sql = "SELECT idUsuario, nombre, apellido, email, contrasenia FROM usuarios
+            $sql = "SELECT idUsuario, nombre, apellido, email, contrasenia, idtipousuario FROM usuarios
                 WHERE email='$correo' AND contrasenia='$password';";
             $resultado = $conexion->ejecutarInstruccion($sql);
             if ($resultado->num_rows == 1) {
                 $datos = $resultado->fetch_assoc();
                 session_start();
                 $_SESSION["usuario"] = $datos;
-                echo json_encode(array('error' => false));
+                echo json_encode(array('error' => false, 'idtipousuario' => $datos["idtipousuario"]));
             } else {
                 echo json_encode(array('error' => true));
             }
