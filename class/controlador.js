@@ -69,9 +69,12 @@ $(document).ready(function () {
                 "&password=" + $("#password").val(),
             success: function (resultado) {
                 respuesta = JSON.parse(resultado);									
-                if (!respuesta.error) {												
-                    location.href = "vocabularios.php";
-                    
+                if (!respuesta.error) {
+	                if (respuesta.idtipousurio == 2) {
+				location.href = admin.php";
+			}else{
+				location.href = "vocabularios.php";
+			}    
                 }
                 else {
                    alert("no existe el usuario");																			
